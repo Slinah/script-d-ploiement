@@ -1,3 +1,4 @@
+ #command to execute it on debian chmod +x .sh
  #!/bin/bash
 
 RED='\033[0;32m'
@@ -9,7 +10,6 @@ if [ "$(id -u)" != "0" ]; then
   echo -e "${RED}Tu n'es pas en root :'(${NC}"
   exit 1
 fi
-
 while :
 do
 echo -e "
@@ -19,7 +19,8 @@ ${BLUE}1- Update/Upgrade & installation des paquets.
 2- Création d'utilisateurs.
 3- Openssh, et MariaDB.
 4- Configuration de la BDD.
-5- Quitter le script --->[].${NC}"
+5- Quitter le script et reboot de la machine --->[].${NC}
+"
 stty -echo #cacher l'affichage des iputs à l'écran
 read chx_menu
 stty echo
@@ -100,7 +101,7 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
     fi
     chmod 755 -R /home/$userdeladebian/.ssh/ #attribution des droits 755 a .ssh/
   fi
-elif [ $chx_menu = 5 ]; then # test si le numéro 5 est sélectionner.
+elif [ $chx_menu = 2 ]; then # test si le numéro 5 est sélectionner.
   echo -e "${RED}Tu nous quittes :c${NC}"
   reboot
   #exit 1
