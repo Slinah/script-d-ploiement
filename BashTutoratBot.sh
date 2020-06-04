@@ -28,7 +28,7 @@ read chx_menu
 stty echo
 
 if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
-  echo -e "${MARRON}1- Update/Upgrade & installation des paquets.${NC}" 
+  echo -e "${BLUE}1- Update/Upgrade & installation des paquets.${NC}" 
   debian = $(grep -e "Debian" /etc/issue) #Stocke la distribution des OS dans la variable debian
   if [[ $debian = Debian ]]; then #si l'OS est debian
     echo -e "${GREEN}Tu as Debian !${NC}"
@@ -104,11 +104,11 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
     chmod 755 -R /home/$userdeladebian/.ssh/ #attribution des droits 755 a .ssh/
   fi
 elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
-  echo -e "${MARRON}2- Création d'utilisateurs.${NC}"
+  echo -e "${BLUE}2- Création d'utilisateurs.${NC}"
   if [[ $debian = Debian ]]; then #si l'OS est debian
     if grep -i "adminweb" /etc/passwd;then #test pour voir si l'user existe deja
       userweb=1
-      echo -e "${MARRON}L'utilisateur est déjà présent.${NC}"
+      echo -e "${BLUE}L'utilisateur est déjà présent.${NC}"
     else
       userweb=0
       echo -e "${RED}L'utilisateur n'a pas été créer, vous allez le créer.${NC}"
@@ -121,7 +121,7 @@ elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
   else
     if grep -i "adminbdd" /etc/passwd;then
       userbdd=1
-      echo -e "${MARRON}L'utilisateur est déjà présent.${NC}"
+      echo -e "${BLUE}L'utilisateur est déjà présent.${NC}"
     else
       userbdd=0
       echo -e "${RED}L'utilisateur n'a pas été créer, vous allez le créer.${NC}"
@@ -134,14 +134,14 @@ elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
     unset userbdd
   fi
 elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
-  echo -e "${MARRON}3- SSH.${NC}"
+  echo -e "${BLUE}3- SSH.${NC}"
   if [[ $debian = Debian ]]; then
     chown -R $userdeladebian /home/$userdeladebian/.ssh/ #Attribution du dossier .ssh/ a l'user
     su -l $userdeladebian -c "ssh-keygen -t rsa" #génération des Clefs
         echo -e "${GREEN}Clefs générées.${NC}"
   fi
 elif [ $chx_menu = 4 ]; then # test si le numéro 4 est sélectionner.
-  echo -e "${MARRON}4- MariaDB.${NC}"
+  echo -e "${BLUE}4- MariaDB.${NC}"
   if [[ $debian == Debian ]]; then
     command > /dev/null 2>&1
   else #Cette partie n'est pas sensée se lancer sous debian, mais elle passe outre le test précédant
