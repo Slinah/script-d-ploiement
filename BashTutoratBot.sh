@@ -30,7 +30,7 @@ stty echo
 if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   echo -e "${MARRON}1- Update/Upgrade & installation des paquets.${NC}" 
   os = $(grep -e "Debian" /etc/issue) #Stocke la distribution des OS dans la variable debian
-  if [[ $os == 'Debian'* ]]; then #si l'OS est debian
+  if [[ $os = Debian ]]; then #si l'OS est debian
     echo -e "${GREEN}Tu as Debian !${NC}"
     echo -e "${GREEN}Programme d'installation de Debian :)${NC}"
     debxport=$(grep "export maccent" /etc/bash.bashrc | cut -c8-14 | head -n 1)
@@ -103,7 +103,62 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
     fi
     chmod 755 -R /home/$userdeladebian/.ssh/ #attribution des droits 755 a .ssh/
   fi
-elif [ $chx_menu = 2 ]; then # test si le numéro 5 est sélectionner.
+elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
+  echo -e "${MARRON}2- Création d'utilisateurs.${NC}"
+  if [[ $debian = Debian ]]; then #si l'OS est debian
+    if grep -i "adminweb" /etc/passwd;then #test pour voir si l'user existe deja
+      userweb=1
+      echo -e "${MARRON}L'utilisateur est déjà présent.${NC}"
+    else
+      userweb=0
+      echo -e "${RED}L'utilisateur n'a pas été créer, vous allez le créer.${NC}"
+    fi
+    if [ $userweb == 0 ]; then
+      adduser adminweb #création de l'utilisateur
+      echo -e "${GREEN}Utilisateur adminweb crée.${NC}"
+    fi
+    unset userweb
+  else
+    if grep -i "adminbdd" /etc/passwd;then
+      userbdd=1
+      echo -e "${MARRON}L'utilisateur est déjà présent.${NC}"
+    else
+      userbdd=0
+      echo -e "${RED}L'utilisateur n'a pas été créer, vous allez le créer.${NC}"
+    fi
+    if [ $userbdd == 0 ]; then
+      adduser adminbdd
+      passwd adminbdd
+      echo -e "${GREEN}Utilisateur adminbdd crée.${NC}"
+    fi
+    unset userbdd
+  fi
+elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
+  echo -e "${MARRON}3- SSH.${NC}"
+  if [[ $debian = Debian ]]; then
+    chown -R $userdeladebian /home/$userdeladebian/.ssh/ #Attribution du dossier .ssh/ a l'user
+    su -l $userdeladebian -c "ssh-keygen -t rsa" #génération des Clefs
+        echo -e "${GREEN}Clefs générées.${NC}"
+  fi
+elif [ $chx_menu = 4 ]; then # test si le numéro 4 est sélectionner.
+  echo -e "${MARRON}4- MariaDB.${NC}"
+  if [[ $debian == Debian ]]; then
+    command > /dev/null 2>&1
+  else #Cette partie n'est pas sensée se lancer sous debian, mais elle passe outre le test précédant
+    echo -e "${GREEN}---Configuration de MariaDB---${NC}"
+    yum install mariadb-server #Installe MariaDB
+    sudo systemctl start mariadb #Lance le système MariaDB
+    sudo systemctl enable mariadb #Active MariaDB a chaque démarrage de la machine
+    firewall-cmd --add-port=3306/tcp #Ouverture du port 3306
+    firewall-cmd --permanent --add-port=3306/tcp #Ouverture permanente du port 3306
+    mysql -u root -e "create user adminbdd;" #Creation de l'user 'Adminbdd'
+    mysql -u root -e "create database tutoratBot;" #Création de la BDD marcachat
+    #mysql -u root -p marcachat < marcachatfinal.sql #Import du script SQl dans la base de données Marcachat
+    #echo -e "${RED}Avant de CONTINUER !!!!${NC} transferer le fichier 'index.php' et donner la localisation de l'erreur d'accès"
+    #read location
+    echo -e "${GREEN}---- Voila MariaDB est configurée ! Félicitations ! A vous la joi des requetes ${RED}SANS CONCATENATION ! "
+  fi
+elif [ $chx_menu = 5 ]; then # test si le numéro 5 est sélectionner.
   echo -e "${RED}Tu nous quittes :c${NC}"
   #reboot
   exit 1
