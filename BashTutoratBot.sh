@@ -20,6 +20,8 @@ ${BLUE}1- Update/Upgrade & installation des paquets.
 3- Openssh, et MariaDB.
 4- Configuration de la BDD.
 5- Quitter le script et reboot de la machine --->[].${NC}
+
+${GREEN}------------------------------------------------${NC}
 "
 #stty -echo #cacher l'affichage des iputs à l'écran
 read chx_menu
