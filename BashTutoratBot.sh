@@ -29,7 +29,7 @@ stty echo
 
 if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   echo -e "${MARRON}1- Update/Upgrade & installation des paquets.${NC}" 
-  os = $(grep -e "Debian" /etc/issue | cut -c1-6) #Stocke la distribution des OS dans la variable debian
+  os = $(grep -e "Debian" /etc/issue) #Stocke la distribution des OS dans la variable debian
   if [[ $os == 'Debian'* ]]; then #si l'OS est debian
     echo -e "${GREEN}Tu as Debian !${NC}"
     echo -e "${GREEN}Programme d'installation de Debian :)${NC}"
