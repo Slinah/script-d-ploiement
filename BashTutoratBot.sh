@@ -2,7 +2,7 @@
  #!/bin/bash
 
 RED='\033[0;31m'
-JAUNE='\033[0;33m'
+BLUE='\033[0;34m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
@@ -15,11 +15,11 @@ do
 echo "
 ${GREEN}---Menu du Script---${NC}
 
-${JAUNE}1- Update/Upgrade & installation des paquets.${NC}
-${JAUNE}2- Création d'utilisateurs.${NC}
-${JAUNE}3- Openssh, et MariaDB.${NC}
-${JAUNE}4- Configuration de la BDD.${NC}
-${JAUNE}5- Quitter le script et reboot de la machine --->[].${NC}
+${BLUE}1- Update/Upgrade & installation des paquets.${NC}
+${BLUE}2- Création d'utilisateurs.${NC}
+${BLUE}3- Openssh, et MariaDB.${NC}
+${BLUE}4- Configuration de la BDD.${NC}
+${BLUE}5- Quitter le script et reboot de la machine --->[].${NC}
 
 ${GREEN}--------------------${NC}
 "
@@ -27,10 +27,10 @@ ${GREEN}--------------------${NC}
 read chx_menu
 stty echo
 
+ debian= $(grep "Debian" /etc/issue | cut -c1-6)#Stocke la distribution des OS dans la variable debian
 if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   echo -e "${MARRON}1- Update/Upgrade & installation des paquets.${NC}" 
-  debian=$(grep "Debian" /etc/issue | cut -c1-6)#Stocke la distribution des OS dans la variable debian
-  if [[ $debian = "Debian" ]]; then #si l'OS est debian
+  if [[ $debian = Debian ]]; then #si l'OS est debian
     echo -e "${GREEN}Tu as Debian !${NC}"
     echo -e "${GREEN}Programme d'installation de Debian :)${NC}"
     debxport=$(grep "export maccent" /etc/bash.bashrc | cut -c8-14 | head -n 1)
