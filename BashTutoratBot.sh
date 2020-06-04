@@ -1,7 +1,7 @@
  #command to execute it on debian chmod +x .sh
  #!/bin/bash
 
-RED='\033[0;32m'
+RED='\033[0;31m'
 JAUNE='\033[0;33m'
 GREEN='\033[0;32m'
 NC='\033[0m'
@@ -21,7 +21,7 @@ ${JAUNE}3- Openssh, et MariaDB.${NC}
 ${JAUNE}4- Configuration de la BDD.${NC}
 ${JAUNE}5- Quitter le script et reboot de la machine --->[].${NC}
 
-${GREEN}------------------------------------------------${NC}
+${GREEN}--------------------${NC}
 "
 #stty -echo #cacher l'affichage des iputs à l'écran
 read chx_menu
@@ -30,7 +30,7 @@ stty echo
 if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   echo -e "${MARRON}1- Update/Upgrade & installation des paquets.${NC}" 
   debian=$(grep "Debian" /etc/issue | cut -c1-6)#Stocke la distribution des OS dans la variable debian
-  if [[ $debian = Debian ]]; then #si l'OS est debian
+  if [[ $debian = "Debian" ]]; then #si l'OS est debian
     echo -e "${GREEN}Tu as Debian !${NC}"
     echo -e "${GREEN}Programme d'installation de Debian :)${NC}"
     debxport=$(grep "export maccent" /etc/bash.bashrc | cut -c8-14 | head -n 1)
