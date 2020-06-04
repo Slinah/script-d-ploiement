@@ -37,7 +37,7 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
     debxport=$(grep "export maccent" /etc/bash.bashrc | cut -c8-14 | head -n 1)
     #stocke le résultat de la première ligne et des caractères 8 à 14 pour la recherche
     #"export maccent" du fichier bash.bashrc dans la variable debxport
-    if [[ $debxport = maccent ]]; then #si debxport = maccent
+    if [ $debxport = maccent ]; then #si debxport = maccent
       command > /dev/null 2>&1 #ne rien faire
     fi
        cd /etc
