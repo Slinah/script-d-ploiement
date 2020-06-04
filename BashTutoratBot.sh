@@ -2,7 +2,7 @@
  #!/bin/bash
 
 RED='\033[0;32m'
-JAUNE='\033[0;0m'
+JAUNE='\033[0;33m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
@@ -15,11 +15,11 @@ do
 echo "
 ${GREEN}---Menu du Script---${NC}
 
-${BLUE}1- Update/Upgrade & installation des paquets.${NC}
-${BLUE}2- Création d'utilisateurs.${NC}
-${BLUE}3- Openssh, et MariaDB.${NC}
-${BLUE}4- Configuration de la BDD.${NC}
-${BLUE}5- Quitter le script et reboot de la machine --->[].${NC}
+${JAUNE}1- Update/Upgrade & installation des paquets.${NC}
+${JAUNE}2- Création d'utilisateurs.${NC}
+${JAUNE}3- Openssh, et MariaDB.${NC}
+${JAUNE}4- Configuration de la BDD.${NC}
+${JAUNE}5- Quitter le script et reboot de la machine --->[].${NC}
 
 ${GREEN}------------------------------------------------${NC}
 "
