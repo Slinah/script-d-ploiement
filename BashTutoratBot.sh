@@ -21,7 +21,7 @@ ${BLUE}1- Update/Upgrade & installation des paquets.
 4- Configuration de la BDD.
 5- Quitter le script et reboot de la machine --->[].${NC}
 "
-stty -echo #cacher l'affichage des iputs à l'écran
+#stty -echo #cacher l'affichage des iputs à l'écran
 read chx_menu
 stty echo
 
