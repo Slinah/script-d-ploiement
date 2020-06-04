@@ -12,14 +12,14 @@ if [ "$(id -u)" != "0" ]; then
 fi
 while :
 do
-echo -e "
+echo "
 ${GREEN}---Menu du Script---${NC}
 
-${BLUE}1- Update/Upgrade & installation des paquets.
-2- Création d'utilisateurs.
-3- Openssh, et MariaDB.
-4- Configuration de la BDD.
-5- Quitter le script et reboot de la machine --->[].${NC}
+${BLUE}1- Update/Upgrade & installation des paquets.${NC}
+${BLUE}2- Création d'utilisateurs.${NC}
+${BLUE}3- Openssh, et MariaDB.${NC}
+${BLUE}4- Configuration de la BDD.${NC}
+${BLUE}5- Quitter le script et reboot de la machine --->[].${NC}
 
 ${GREEN}------------------------------------------------${NC}
 "
