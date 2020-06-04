@@ -12,7 +12,7 @@ if [ "$(id -u)" != "0" ]; then
 fi
 while :
 do
-echo "
+echo -e "
 ${GREEN}---Menu du Script---${NC}
 
 ${BLUE}1- Update/Upgrade & installation des paquets.${NC}
@@ -27,7 +27,6 @@ ${GREEN}--------------------${NC}
 read chx_menu
 stty echo
 
- 
 if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   echo -e "${MARRON}1- Update/Upgrade & installation des paquets.${NC}" 
   debian = $(grep -e "Debian" /etc/issue | cut -c1-6)#Stocke la distribution des OS dans la variable debian
@@ -106,8 +105,8 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   fi
 elif [ $chx_menu = 2 ]; then # test si le numéro 5 est sélectionner.
   echo -e "${RED}Tu nous quittes :c${NC}"
-  reboot
-  #exit 1
+  #reboot
+  exit 1
 fi
 done
 
