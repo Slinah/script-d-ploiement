@@ -49,7 +49,7 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   apt-get update -y --force-yes #update/upgrade
   apt-get upgrade -y --force-yes
   echo -e "${GREEN}Update/Upgrade effectués${NC}"
-  echo -e "${GREEN}Installation de Openssh, et MariaDB{NC}"
+  echo -e "${GREEN}Installation de Openssh, et MariaDB ${NC}"
   #Installation du paquet SSH
   apt-get install openssh-server -y --force-yes
   echo -e "${GREEN}Paquet SSH installé.{NC}"
@@ -100,7 +100,6 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   chmod 755 -R /home/$userdeladebian/.ssh/ #attribution des droits 755 a .ssh/
 elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
   echo -e "${BLUE}2- Création d'utilisateurs.${NC}"
-  if [[ $debian = Debian ]]; then #si l'OS est debian
     if grep -i "adminweb" /etc/passwd;then #test pour voir si l'user existe deja
       userweb=1
       echo -e "${BLUE}L'utilisateur est déjà présent.${NC}"
@@ -130,14 +129,12 @@ elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
   fi
 elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
   echo -e "${BLUE}3- SSH.${NC}"
-  if [[ $debian = Debian ]]; then
     chown -R $userdeladebian /home/$userdeladebian/.ssh/ #Attribution du dossier .ssh/ a l'user
     su -l $userdeladebian -c "ssh-keygen -t rsa" #génération des Clefs
         echo -e "${GREEN}Clefs générées.${NC}"
   fi
 elif [ $chx_menu = 4 ]; then # test si le numéro 4 est sélectionner.
   echo -e "${BLUE}4- MariaDB.${NC}"
-  if [[ $debian == Debian ]]; then
     command > /dev/null 2>&1
   else #Cette partie n'est pas sensée se lancer sous debian, mais elle passe outre le test précédant
     echo -e "${GREEN}---Configuration de MariaDB---${NC}"
