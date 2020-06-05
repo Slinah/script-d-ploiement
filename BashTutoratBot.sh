@@ -133,7 +133,7 @@ elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
         echo -e "${GREEN}Clefs générées.${NC}"
 elif [ $chx_menu = 4 ]; then # test si le numéro 4 est sélectionner.
   echo -e "${BLUE}4- MariaDB.${NC}"
-    command > /dev/null 2>&1
+  command > /dev/null 2>&1
   else #Cette partie n'est pas sensée se lancer sous debian, mais elle passe outre le test précédant
     echo -e "${GREEN}---Configuration de MariaDB---${NC}"
     yum install mariadb-server #Installe MariaDB
