@@ -131,7 +131,6 @@ elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
     chown -R $userdeladebian /home/$userdeladebian/.ssh/ #Attribution du dossier .ssh/ a l'user
     su -l $userdeladebian -c "ssh-keygen -t rsa" #génération des Clefs
         echo -e "${GREEN}Clefs générées.${NC}"
-  fi
 elif [ $chx_menu = 4 ]; then # test si le numéro 4 est sélectionner.
   echo -e "${BLUE}4- MariaDB.${NC}"
     command > /dev/null 2>&1
@@ -148,7 +147,6 @@ elif [ $chx_menu = 4 ]; then # test si le numéro 4 est sélectionner.
     #echo -e "${RED}Avant de CONTINUER !!!!${NC} transferer le fichier 'index.php' et donner la localisation de l'erreur d'accès"
     #read location
     echo -e "${GREEN}---- Voila MariaDB est configurée ! Félicitations ! A vous la joi des requetes ${RED}SANS CONCATENATION ! "
-  fi
 elif [ $chx_menu = 5 ]; then # test si le numéro 5 est sélectionner.
   echo -e "${RED}Tu nous quittes :c${NC}"
   #reboot
