@@ -134,19 +134,18 @@ elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
 elif [ $chx_menu = 4 ]; then # test si le numéro 4 est sélectionner.
   echo -e "${BLUE}4- MariaDB.${NC}"
   command > /dev/null 2>&1
-  else #Cette partie n'est pas sensée se lancer sous debian, mais elle passe outre le test précédant
-    echo -e "${GREEN}---Configuration de MariaDB---${NC}"
-    yum install mariadb-server #Installe MariaDB
-    sudo systemctl start mariadb #Lance le système MariaDB
-    sudo systemctl enable mariadb #Active MariaDB a chaque démarrage de la machine
-    firewall-cmd --add-port=3306/tcp #Ouverture du port 3306
-    firewall-cmd --permanent --add-port=3306/tcp #Ouverture permanente du port 3306
-    mysql -u root -e "create user adminbdd;" #Creation de l'user 'Adminbdd'
-    mysql -u root -e "create database tutoratBot;" #Création de la BDD marcachat
-    #mysql -u root -p marcachat < marcachatfinal.sql #Import du script SQl dans la base de données Marcachat
-    #echo -e "${RED}Avant de CONTINUER !!!!${NC} transferer le fichier 'index.php' et donner la localisation de l'erreur d'accès"
-    #read location
-    echo -e "${GREEN}---- Voila MariaDB est configurée ! Félicitations ! A vous la joi des requetes ${RED}SANS CONCATENATION ! "
+  echo -e "${GREEN}---Configuration de MariaDB---${NC}"
+  yum install mariadb-server #Installe MariaDB
+  sudo systemctl start mariadb #Lance le système MariaDB
+  sudo systemctl enable mariadb #Active MariaDB a chaque démarrage de la machine
+  firewall-cmd --add-port=3306/tcp #Ouverture du port 3306
+  firewall-cmd --permanent --add-port=3306/tcp #Ouverture permanente du port 3306
+  mysql -u root -e "create user adminbdd;" #Creation de l'user 'Adminbdd'
+  mysql -u root -e "create database tutoratBot;" #Création de la BDD marcachat
+  #mysql -u root -p marcachat < marcachatfinal.sql #Import du script SQl dans la base de données Marcachat
+  #echo -e "${RED}Avant de CONTINUER !!!!${NC} transferer le fichier 'index.php' et donner la localisation de l'erreur d'accès"
+  #read location
+  echo -e "${GREEN}---- Voila MariaDB est configurée ! Félicitations ! A vous la joi des requetes ${RED}SANS CONCATENATION ! "
 elif [ $chx_menu = 5 ]; then # test si le numéro 5 est sélectionner.
   echo -e "${RED}Tu nous quittes :c${NC}"
   #reboot
