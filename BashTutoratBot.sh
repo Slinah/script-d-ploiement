@@ -98,8 +98,6 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
     echo -e "${GREEN}Fichier authorized_keys crée.${NC}"
   fi
   chmod 755 -R /home/$userdeladebian/.ssh/ #attribution des droits 755 a .ssh/
-  fi
-fi
 elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
   echo -e "${BLUE}2- Création d'utilisateurs.${NC}"
   if [[ $debian = Debian ]]; then #si l'OS est debian
