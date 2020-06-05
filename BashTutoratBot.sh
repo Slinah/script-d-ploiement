@@ -100,33 +100,32 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   chmod 755 -R /home/$userdeladebian/.ssh/ #attribution des droits 755 a .ssh/
 elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
   echo -e "${BLUE}2- Création d'utilisateurs.${NC}"
-    if grep -i "adminweb" /etc/passwd;then #test pour voir si l'user existe deja
-      userweb=1
-      echo -e "${BLUE}L'utilisateur est déjà présent.${NC}"
-    else
-      userweb=0
-      echo -e "${RED}L'utilisateur n'a pas été créer, vous allez le créer.${NC}"
-    fi
-    if [ $userweb == 0 ]; then
-      adduser adminweb #création de l'utilisateur
-      echo -e "${GREEN}Utilisateur adminweb crée.${NC}"
-    fi
-    unset userweb
+  if grep -i "adminweb" /etc/passwd;then #test pour voir si l'user existe deja
+    userweb=1
+    echo -e "${BLUE}L'utilisateur est déjà présent.${NC}"
   else
-    if grep -i "adminbdd" /etc/passwd;then
-      userbdd=1
-      echo -e "${BLUE}L'utilisateur est déjà présent.${NC}"
-    else
-      userbdd=0
-      echo -e "${RED}L'utilisateur n'a pas été créer, vous allez le créer.${NC}"
-    fi
-    if [ $userbdd == 0 ]; then
-      adduser adminbdd
-      passwd adminbdd
-      echo -e "${GREEN}Utilisateur adminbdd crée.${NC}"
-    fi
-    unset userbdd
+    userweb=0
+    echo -e "${RED}L'utilisateur n'a pas été créer, vous allez le créer.${NC}"
   fi
+  if [ $userweb == 0 ]; then
+    adduser adminweb #création de l'utilisateur
+    echo -e "${GREEN}Utilisateur adminweb crée.${NC}"
+  fi
+  unset userweb
+  ese
+  if grep -i "adminbdd" /etc/passwd;then
+    userbdd=1
+    echo -e "${BLUE}L'utilisateur est déjà présent.${NC}"
+  else
+    userbdd=0
+    echo -e "${RED}L'utilisateur n'a pas été créer, vous allez le créer.${NC}"
+  fi
+  if [ $userbdd == 0 ]; then
+    adduser adminbdd
+    passwd adminbdd
+    echo -e "${GREEN}Utilisateur adminbdd crée.${NC}"
+  fi
+  unset userbdd
 elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
   echo -e "${BLUE}3- SSH.${NC}"
     chown -R $userdeladebian /home/$userdeladebian/.ssh/ #Attribution du dossier .ssh/ a l'user
