@@ -12,7 +12,7 @@ if [ "$(id -u)" != "0" ]; then
 fi
 while :
 do
-echo -e "
+echo "
 ${GREEN}---Menu du Script---${NC}
 
 ${BLUE}1- Update/Upgrade & installation des paquets.${NC}
@@ -52,7 +52,7 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   echo -e "${GREEN}Installation de Openssh, et MariaDB ${NC}"
   #Installation du paquet SSH
   apt-get install openssh-server -y --force-yes
-  echo -e "${GREEN}Paquet SSH installé.{NC}"
+  echo -e "${GREEN}Paquet SSH installé.${NC}"
   #Installation du paquet FTP
   apt-get install vsftpd -y --force-yes
   echo -e "${GREEN}Paquet FTP installé.${NC}"
