@@ -36,10 +36,7 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
     command > /dev/null 2>&1 #ne rien faire
     else #variable (certaine on servis pour des tests...)
        echo "#~~Variables~~#
-export maccent=00:17:A4:4E:7B:7B
-export usercent=adminBot
-export ipcent=172.16.60.1
-export userdeladebian=$(users | grep -i "leo")" >> /etc/bash.bashrc
+export userdeladebian=$(users | grep -i "adminBot")" >> /etc/bash.bashrc
       source /etc/bash.bashrc #actualiser le fichier bash.bashrc
   fi
      cd /etc
