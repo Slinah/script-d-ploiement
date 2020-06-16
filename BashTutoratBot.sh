@@ -108,7 +108,7 @@ elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
     echo "${RED}L'utilisateur n'a pas été créer, vous allez le créer.${NC}"
     echo $userbot
   fi
-  if [ $userbot == 0 ]; then
+  if [ userbot == 0 ]; then
     adduser adminBot #création de l'utilisateur
     echo "${GREEN}Utilisateur adminBot crée.${NC}"
   fi
