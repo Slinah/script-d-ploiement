@@ -98,34 +98,28 @@ export userdeladebian=$(users | grep -i "adminBot")" >> /etc/bash.bashrc
     echo "${GREEN}Fichier authorized_keys crée.${NC}"
   fi
   chmod 755 -R /home/$userdeladebian/.ssh/ #attribution des droits 755 a .ssh/
+  echo debxport
 elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
   echo "${BLUE}2- Création d'utilisateurs.${NC}"
   if grep -i "adminBot" /etc/passwd;then #test pour voir si l'user existe deja
-    userbot=1
     echo "${BLUE}L'utilisateur est déjà présent.${NC}"
   else
-    userbot=0
-    echo "${RED}L'utilisateur n'a pas été créer, vous allez le créer.${NC}"
-    echo $userbot
-  fi
-  if [ $userbot == '0' ]; then
+    echo "${GREEN}L'utilisateur n'était pas créer, il vient d'etre créer !.${NC}"
     adduser adminBot #création de l'utilisateur
-    echo "${GREEN}Utilisateur adminBot crée.${NC}"
   fi
-  unset userbot
 elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
   echo "${BLUE}3- SSH.${NC}"
   chown -R $userdeladebian /home/$userdeladebian/.ssh/ #Attribution du dossier .ssh/ a l'user
   su -l $userdeladebian -c "ssh-keygen -t rsa" #génération des Clefs
   echo "${GREEN}Clefs générées.${NC}"
       ssh-copy-id -i /home/$userdeladebian/.ssh/id_rsa.pub $usercent@$ipcent #copies des clefs
-    echo -e "${GREEN}Clefs copiées.${NC}"
-  sudo apt install ruby-full # installation de ruby
-  echo -e "${GREEN}Ruby installe.${NC}"
+    echo "${GREEN}Clefs copiées.${NC}"
+  sudo apt install ruby-full -y # installation de ruby
+  echo "${GREEN}Ruby installe.${NC}"
   git clone https://github.com/Slinah/api-refonte-tutorat.git # on clone l'api de notre bot
-  echo -e "${GREEN}L'API a été clone.${NC}"
+  echo "${GREEN}L'API a été clone.${NC}"
   sudo gem install bundler
-  sudo bundle install
+  bundle install
   sudo service 
 elif [ $chx_menu = 4 ]; then # test si le numéro 4 est sélectionner.
   echo "${BLUE}4- MariaDB.${NC}"
@@ -136,11 +130,9 @@ elif [ $chx_menu = 4 ]; then # test si le numéro 4 est sélectionner.
   sudo apt install mariadb-server #Installe MariaDB
   sudo systemctl start mariadb #Lance le système MariaDB
   sudo systemctl enable mariadb #Active MariaDB a chaque démarrage de la machine
-  firewall-cmd --add-port=3306/tcp #Ouverture du port 3306
-  firewall-cmd --permanent --add-port=3306/tcp #Ouverture permanente du port 3306
   mysql -u root "create user adminBot;" #Creation de l'user 'adminBot'
   mysql -u root "create database tutoratBot;" #Création de la BDD tutoratBot
-  mysql -u root -p tutoratBot < tutorat.sql #Import du script SQl dans la base de données du tutorat
+  mysql -u root -p tutoratBot < /home/$userdeladebian/tutorat.sql #Import du script SQl dans la base de données du tutorat
   #echo -e "${RED}Avant de CONTINUER !!!!${NC} transferer le fichier 'index.php' et donner la localisation de l'erreur d'accès"
   #read location
   echo "${GREEN}---- Voila MariaDB est configurée ! Félicitations !"
