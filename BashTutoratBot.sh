@@ -107,23 +107,11 @@ elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
     echo "${GREEN}L'utilisateur n'était pas créer, il vient d'etre créer !.${NC}"
     adduser adminBot #création de l'utilisateur
   fi
-elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
-  echo "${BLUE}3- SSH.${NC}"
-  chown -R $userdeladebian /home/$userdeladebian/.ssh/ #Attribution du dossier .ssh/ a l'user
-  su -l $userdeladebian -c "ssh-keygen -t rsa" #génération des Clefs
-  echo "${GREEN}Clefs générées.${NC}"
-      ssh-copy-id -i /home/$userdeladebian/.ssh/id_rsa.pub $usercent@$ipcent #copies des clefs
-      echo "${GREEN}Clefs copiées.${NC}"
-  apt install ruby-full -y # installation de ruby
-  echo "${GREEN}Ruby installe.${NC}"
-  git clone https://github.com/Slinah/api-refonte-tutorat.git # on clone l'api de notre bot
-  echo "${GREEN}L'API a été clone.${NC}"
-  gem install bundler
-  bundle install
-elif [ $chx_menu = 4 ]; then # test si le numéro 4 est sélectionner.
+elif [ $chx_menu = 3 ]; then # test si le numéro 4 est sélectionner.
   echo "${BLUE}4- MariaDB.${NC}"
   #Installation du paquet MariaDB
   apt-get install mariadb-server -y --force-yes
+  sudo apt-get install libmariadb-dev -y --force-yes
   command > /dev/null 2>&1
   echo "${GREEN}---Configuration de MariaDB---${NC}"
   sudo apt install mariadb-server #Installe MariaDB
@@ -135,6 +123,14 @@ elif [ $chx_menu = 4 ]; then # test si le numéro 4 est sélectionner.
   #echo -e "${RED}Avant de CONTINUER !!!!${NC} transferer le fichier 'index.php' et donner la localisation de l'erreur d'accès"
   #read location
   echo "${GREEN}---- Voila MariaDB est configurée ! Félicitations !"
+  echo $userdeladebian
+elif [ $chx_menu = 4 ]; then # test si le numéro 3 est sélectionner.
+  apt install ruby-full -y # installation de ruby
+  echo "${GREEN}Ruby installe.${NC}"
+  git clone https://github.com/Slinah/api-refonte-tutorat.git # on clone l'api de notre bot
+  echo "${GREEN}L'API a été clone.${NC}"
+  gem install bundler
+  bundle install
 elif [ $chx_menu = 5 ]; then # test si le numéro 5 est sélectionner.
   echo "${RED}Tu nous quittes :c${NC}"
   #reboot
