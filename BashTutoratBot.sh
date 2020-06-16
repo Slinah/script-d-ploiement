@@ -118,7 +118,7 @@ elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
   echo "${GREEN}Ruby installe.${NC}"
   git clone https://github.com/Slinah/api-refonte-tutorat.git # on clone l'api de notre bot
   echo "${GREEN}L'API a été clone.${NC}"
-  sudo gem install bundler
+  gem install bundler
   bundle install
   sudo service 
 elif [ $chx_menu = 4 ]; then # test si le numéro 4 est sélectionner.
