@@ -120,7 +120,6 @@ elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
   echo "${GREEN}L'API a été clone.${NC}"
   gem install bundler
   bundle install
-  sudo service 
 elif [ $chx_menu = 4 ]; then # test si le numéro 4 est sélectionner.
   echo "${BLUE}4- MariaDB.${NC}"
   #Installation du paquet MariaDB
