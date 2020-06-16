@@ -113,8 +113,8 @@ elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
   su -l $userdeladebian -c "ssh-keygen -t rsa" #génération des Clefs
   echo "${GREEN}Clefs générées.${NC}"
       ssh-copy-id -i /home/$userdeladebian/.ssh/id_rsa.pub $usercent@$ipcent #copies des clefs
-    echo "${GREEN}Clefs copiées.${NC}"
-  sudo apt install ruby-full -y # installation de ruby
+      echo "${GREEN}Clefs copiées.${NC}"
+  apt install ruby-full -y # installation de ruby
   echo "${GREEN}Ruby installe.${NC}"
   git clone https://github.com/Slinah/api-refonte-tutorat.git # on clone l'api de notre bot
   echo "${GREEN}L'API a été clone.${NC}"
