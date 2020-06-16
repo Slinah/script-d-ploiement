@@ -123,7 +123,7 @@ elif [ $chx_menu = 3 ]; then # test si le numéro 4 est sélectionner.
   #echo -e "${RED}Avant de CONTINUER !!!!${NC} transferer le fichier 'index.php' et donner la localisation de l'erreur d'accès"
   #read location
   echo "${GREEN}---- Voila MariaDB est configurée ! Félicitations !"
-  echo $userdeladebian
+  echo '|'$userdeladebian'|'
 elif [ $chx_menu = 4 ]; then # test si le numéro 3 est sélectionner.
   apt install ruby-full -y # installation de ruby
   echo "${GREEN}Ruby installe.${NC}"
