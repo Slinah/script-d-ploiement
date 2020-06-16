@@ -101,30 +101,18 @@ export userdeladebian=$(users | grep -i "adminBot")" >> /etc/bash.bashrc
 elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
   echo "${BLUE}2- Création d'utilisateurs.${NC}"
   if grep -i "adminBot" /etc/passwd;then #test pour voir si l'user existe deja
-    userweb=1
+    userbot=1
     echo "${BLUE}L'utilisateur est déjà présent.${NC}"
   else
-    userweb=0
+    userbot=0
     echo "${RED}L'utilisateur n'a pas été créer, vous allez le créer.${NC}"
+    echo $userbot
   fi
-  if [ $userweb == 0 ]; then
+  if [ $userbot == 0 ]; then
     adduser adminBot #création de l'utilisateur
     echo "${GREEN}Utilisateur adminBot crée.${NC}"
   fi
-  unset userweb
-  if grep -i "adminBot" /etc/passwd;then
-    userbdd=1
-    echo "${BLUE}L'utilisateur est déjà présent.${NC}"
-  else
-    userbdd=0
-    echo "${RED}L'utilisateur n'a pas été créer, vous allez le créer.${NC}"
-  fi
-  if [ $userbdd == 0 ]; then
-    adduser adminBot
-    passwd adminBot
-    echo "${GREEN}Utilisateur adminBot crée.${NC}"
-  fi
-  unset userbdd
+  unset userbot
 elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
   echo "${BLUE}3- SSH.${NC}"
   chown -R $userdeladebian /home/$userdeladebian/.ssh/ #Attribution du dossier .ssh/ a l'user
