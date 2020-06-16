@@ -38,6 +38,7 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
        echo "#~~Variables~~#
 export userdeladebian=$(users | grep -i "adminBot")" >> /etc/bash.bashrc
       source /etc/bash.bashrc #actualiser le fichier bash.bashrc
+      echo '|'$userdeladebian'|'
   fi
      cd /etc
   echo "tutoratBot" > hostname #changer le nom de la machine
@@ -99,6 +100,7 @@ export userdeladebian=$(users | grep -i "adminBot")" >> /etc/bash.bashrc
   fi
   chmod 755 -R /home/$userdeladebian/.ssh/ #attribution des droits 755 a .ssh/
   echo debxport
+  echo '|'$userdeladebian'|'
 elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
   echo "${BLUE}2- Création d'utilisateurs.${NC}"
   if grep -i "adminBot" /etc/passwd;then #test pour voir si l'user existe deja
@@ -107,6 +109,7 @@ elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
     echo "${GREEN}L'utilisateur n'était pas créer, il vient d'etre créer !.${NC}"
     adduser adminBot #création de l'utilisateur
   fi
+  echo '|'$userdeladebian'|'
 elif [ $chx_menu = 3 ]; then # test si le numéro 4 est sélectionner.
   echo "${BLUE}4- MariaDB.${NC}"
   #Installation du paquet MariaDB
