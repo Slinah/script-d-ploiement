@@ -5,6 +5,7 @@ RED='\033[0;31m'
 BLUE='\033[0;34m'
 GREEN='\033[0;32m'
 NC='\033[0m'
+$userdeladebian = "adminbot"
 
 if [ "$(id -u)" != 0 ]; then
   echo "${RED}Tu n'es pas en root :'(${NC}"
@@ -26,22 +27,19 @@ ${GREEN}--------------------${NC}
 #stty -echo #cacher l'affichage des iputs à l'écran
 read chx_menu
 stty echo
-
-if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
-  echo "${BLUE}1- Update/Upgrade & installation des paquets.${NC}" 
-  debxport=$(grep "export maccent" /etc/bash.bashrc | cut -c8-14 | head -n 1)
-  #stocke le résultat de la première ligne et des caractères 8 à 14 pour la recherche
-  #"export maccent" du fichier bash.bashrc dans la variable debxport
-  if [ $debxport = maccent ]; then #si debxport = maccent
-    command > /dev/null 2>&1 #ne rien faire
-    else #variable (certaine on servis pour des tests...)
-       echo "#~~Variables~~#
-export userdeladebian=$(users | grep -i "adminBot")" >> /etc/bash.bashrc
-      source /etc/bash.bashrc #actualiser le fichier bash.bashrc
-      echo '|'$userdeladebian'|'
+if [ $chx_menu = 1 ]; then # test si le numéro 2 est sélectionner.
+  echo "${BLUE}2- Création d'utilisateurs.${NC}"
+  if [grep -i "adminBot" /etc/passwd];then #test pour voir si l'user existe deja
+    echo "${BLUE}L'utilisateur est déjà présent.${NC}"
+  else
+    echo "${GREEN}L'utilisateur n'était pas créer, il vient d'etre créer !.${NC}"
+    adduser -d /home/$userdeladebian -p adminbot #création de l'utilisateur
   fi
-     cd /etc
-  echo -e "tutoratBot" > hostname #changer le nom de la machine
+  echo '|'$userdeladebian'|'
+elif [ $chx_menu = 2 ]; then # test si le numéro 1 est sélectionner.
+  echo "${BLUE}1- Update/Upgrade & installation des paquets.${NC}" 
+  cd /etc
+  echo "tutoratBot" > hostname #changer le nom de la machine
   cd /etc/apt/ #mise a jour des sources
   echo "deb http://deb.debian.org/debian/ stable main contrib non-free
   deb-src http://deb.debian.org/debian/ stable main contrib non-free
@@ -100,15 +98,6 @@ export userdeladebian=$(users | grep -i "adminBot")" >> /etc/bash.bashrc
   fi
   chmod 755 -R /home/$userdeladebian/.ssh/ #attribution des droits 755 a .ssh/
   echo debxport
-  echo '|'$userdeladebian'|'
-elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
-  echo "${BLUE}2- Création d'utilisateurs.${NC}"
-  if grep -i "adminBot" /etc/passwd;then #test pour voir si l'user existe deja
-    echo "${BLUE}L'utilisateur est déjà présent.${NC}"
-  else
-    echo "${GREEN}L'utilisateur n'était pas créer, il vient d'etre créer !.${NC}"
-    adduser adminBot #création de l'utilisateur
-  fi
   echo '|'$userdeladebian'|'
 elif [ $chx_menu = 3 ]; then # test si le numéro 4 est sélectionner.
   echo "${BLUE}4- MariaDB.${NC}"
