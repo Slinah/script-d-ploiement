@@ -81,20 +81,20 @@ export userdeladebian=$(users | grep -i "adminBot")" >> /etc/bash.bashrc
   allow_writeable_chroot=YES" > /etc/vsftpd.conf
   service restart vsftpd
   echo "${GREEN}Paquet MariaDB installé.${NC}"
-    if [ -d "/home/$userdeladebian/.ssh/" ];then #si .ssh/ est deja créer, ne rien faire
+  if [ -d "/home/$userdeladebian/.ssh/" ];then #si .ssh/ est deja créer, ne rien faire
     command > /dev/null 2>&1
     echo "${GREEN}Répertoire .ssh/ déjà crée.${NC}"
-  else #si .ssh/ n'est pas créer, le créer
-    su -l $userdeladebian -c "mkdir .ssh/"
-    echo "${GREEN}Répertoire .ssh/ crée.${NC}"
+    else #si .ssh/ n'est pas créer, le créer
+      su -l $userdeladebian -c "mkdir .ssh/"
+      echo "${GREEN}Répertoire .ssh/ crée.${NC}"
   fi
   cd .ssh/
   if [ -d "/home/$userdeladebian/.ssh/authorized_keys" ];then #si authorized_keys est deja créer, ne rien faire
     command > /dev/null 2>&1
     echo "${GREEN}Fichier authorized_keys déjà crée.${NC}"
-  else #si authorized_keys n'est pas créer, le créer
-    touch authorized_keys
-    echo "${GREEN}Fichier authorized_keys crée.${NC}"
+    else #si authorized_keys n'est pas créer, le créer
+      touch authorized_keys
+      echo "${GREEN}Fichier authorized_keys crée.${NC}"
   fi
   chmod 755 -R /home/$userdeladebian/.ssh/ #attribution des droits 755 a .ssh/
   echo debxport
@@ -103,10 +103,10 @@ elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
   echo "${BLUE}2- Création d'utilisateurs.${NC}"
   if grep -i "adminBot" /etc/passwd;then #test pour voir si l'user existe deja
     echo "${BLUE}L'utilisateur est déjà présent.${NC}"
-  else
-    echo "${GREEN}L'utilisateur n'était pas créer, il vient d'etre créer !.${NC}"
-    adduser adminBot #création de l'utilisateur
-  echo '|'$userdeladebian'|'
+    else
+      echo "${GREEN}L'utilisateur n'était pas créer, il vient d'etre créer !.${NC}"
+      adduser adminBot #création de l'utilisateur
+      echo '|'$userdeladebian'|'
 elif [ $chx_menu = 3 ]; then # test si le numéro 4 est sélectionner.
   echo "${BLUE}4- MariaDB.${NC}"
   #Installation du paquet MariaDB
