@@ -33,7 +33,7 @@ if [ $chx_menu = 1 ]; then # test si le numéro 2 est sélectionner.
     echo "${BLUE}L'utilisateur est déjà présent.${NC}"
   else
     echo "${GREEN}L'utilisateur n'était ${RED}pas${GREEN} créer, il vient d'etre créer !.${NC}"
-    adduser -d /home/adminbot -p adminbot #création de l'utilisateur
+    adduser -d /home/adminbot -p adminbot adminbot #création de l'utilisateur
   fi
   $userdeladebian = $(grep -i "adminBot" /etc/passwd)
   echo '|'$userdeladebian'|'
