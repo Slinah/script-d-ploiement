@@ -106,7 +106,6 @@ elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
   else
     echo "${GREEN}L'utilisateur n'était pas créer, il vient d'etre créer !.${NC}"
     adduser adminBot #création de l'utilisateur
-  fi
   echo '|'$userdeladebian'|'
 elif [ $chx_menu = 3 ]; then # test si le numéro 4 est sélectionner.
   echo "${BLUE}4- MariaDB.${NC}"
