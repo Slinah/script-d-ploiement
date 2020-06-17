@@ -5,7 +5,7 @@ RED='\033[0;31m'
 BLUE='\033[0;34m'
 GREEN='\033[0;32m'
 NC='\033[0m'
-$userdeladebian =  "adminbot"
+$userdeladebian = $(grep -i "leo" /etc/passwd)
 
 if [ "$(id -u)" != 0 ]; then
   echo "${RED}Tu n'es pas en root :'(${NC}"
@@ -35,9 +35,7 @@ if [ $chx_menu = 1 ]; then # test si le numéro 2 est sélectionner.
     echo "${GREEN}L'utilisateur n'était ${RED}pas${GREEN} créer, il vient d'etre créer !.${NC}"
     sudo useradd -m $userdeladebian --home /home/$userdeladebian/ --create-home --shell /bin/bash #création de l'utilisateur
     passwd $userdeladebian
-    echo $userdeladebian
   fi
-  $userdeladebian = $(grep -i "adminBot" /etc/passwd)
   echo '|'$userdeladebian'|'
 elif [ $chx_menu = 2 ]; then # test si le numéro 1 est sélectionner.
   echo "${BLUE}1- Update/Upgrade & installation des paquets.${NC}" 
