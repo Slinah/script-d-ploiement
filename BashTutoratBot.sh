@@ -29,13 +29,13 @@ read chx_menu
 stty echo
 if [ $chx_menu = 1 ]; then # test si le numéro 2 est sélectionner.
   echo "${BLUE}2- Création d'utilisateurs.${NC}"
-  if [grep -i "adminBot" /etc/passwd];then #test pour voir si l'user existe deja
+  if [ grep -i "adminBot" /etc/passwd ];then #test pour voir si l'user existe deja
     echo "${BLUE}L'utilisateur est déjà présent.${NC}"
   else
     echo "${GREEN}L'utilisateur n'était ${RED}pas${GREEN} créer, il vient d'etre créer !.${NC}"
-    sudo useradd $userdeladebian --home /home/$userdeladebian/ --create-home --shell /bin/bash #création de l'utilisateur
+    sudo useradd -m $userdeladebian --home /home/$userdeladebian/ --create-home --shell /bin/bash #création de l'utilisateur
     passwd $userdeladebian
-    $userdeladebian
+    echo $userdeladebian
   fi
   $userdeladebian = $(grep -i "adminBot" /etc/passwd)
   echo '|'$userdeladebian'|'
