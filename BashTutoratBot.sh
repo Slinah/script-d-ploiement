@@ -70,8 +70,8 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   service vsftpd restart
     echo "${GREEN}FTP OK.${NC}"
    #Installation du paquet MariaDB
-  apt-get install mariadb-server -y --allow
-  sudo apt-get install libmariadb-dev -y --allow
+  apt-get install mariadb-server -y
+  sudo apt-get install libmariadb-dev -y
   echo "${GREEN}Paquet MariaDB installé.${NC}"
 elif [ $chx_menu = 2 ]; then # test si le numéro 4 est sélectionner.
   echo "${GREEN}---Configuration de MariaDB---${NC}"
