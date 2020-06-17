@@ -28,7 +28,6 @@ read chx_menu
 stty echo
 
 if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
-
   echo "${BLUE}1- Update/Upgrade & installation des paquets.${NC}" 
   debxport=$(grep "export maccent" /etc/bash.bashrc | cut -c8-14 | head -n 1)
   #stocke le résultat de la première ligne et des caractères 8 à 14 pour la recherche
