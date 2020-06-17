@@ -67,7 +67,7 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
   ssl_enable=NO
   allow_writeable_chroot=YES" > /etc/vsftpd.conf
-  service restart vsftpd
+  service vsftpd restart
     echo "${GREEN}FTP OK.${NC}"
    #Installation du paquet MariaDB
   apt-get install mariadb-server -y --allow
