@@ -8,7 +8,7 @@ NC='\033[0m'
 
 if [ "$(id -u)" != "0" ]; then
   echo "${RED}Tu n'es pas en root :'(${NC}"
-  exit 1
+  exit 2
 fi
 while :
 do
