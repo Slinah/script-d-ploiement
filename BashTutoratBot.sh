@@ -16,8 +16,8 @@ do
 echo "
 ${GREEN}---Menu du Script---${NC}
 
-${BLUE}1- Update/Upgrade & installation des paquets.${NC}
-${BLUE}2- Création d'utilisateurs.${NC}
+${BLUE}1- Création d'utilisateurs.${NC}
+${BLUE}2- Update/Upgrade & installation des paquets.${NC}
 ${BLUE}3- Configuration de la BDD.${NC}
 ${BLUE}4- Openssh, l'api ruby, et l'api discord.${NC}
 ${BLUE}5- Quitter le script et reboot de la machine --->[].${NC}
@@ -33,7 +33,9 @@ if [ $chx_menu = 1 ]; then # test si le numéro 2 est sélectionner.
     echo "${BLUE}L'utilisateur est déjà présent.${NC}"
   else
     echo "${GREEN}L'utilisateur n'était ${RED}pas${GREEN} créer, il vient d'etre créer !.${NC}"
-    adduser -d /home/adminbot -p adminbot adminbot #création de l'utilisateur
+    sudo useradd $userdeladebian --home /home/$userdeladebian/ --create-home --shell /bin/bash #création de l'utilisateur
+    passwd $userdeladebian
+    $userdeladebian
   fi
   $userdeladebian = $(grep -i "adminBot" /etc/passwd)
   echo '|'$userdeladebian'|'
