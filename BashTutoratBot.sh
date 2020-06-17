@@ -28,6 +28,7 @@ read chx_menu
 stty echo
 
 if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
+
   echo "${BLUE}1- Update/Upgrade & installation des paquets.${NC}" 
   debxport=$(grep "export maccent" /etc/bash.bashrc | cut -c8-14 | head -n 1)
   #stocke le résultat de la première ligne et des caractères 8 à 14 pour la recherche
@@ -97,9 +98,8 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
       echo "${GREEN}Fichier authorized_keys crée.${NC}"
   fi
   chmod 755 -R /home/$userdeladebian/.ssh/ #attribution des droits 755 a .ssh/
-  echo debxport
+  echo $debxport
   echo '|'$userdeladebian'|'
-  fi
 elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
   echo "${BLUE}2- Création d'utilisateurs.${NC}"
   if grep -i "adminBot" /etc/passwd;then #test pour voir si l'user existe deja
