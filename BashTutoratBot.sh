@@ -32,15 +32,13 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   debxport=$(grep "export maccent" /etc/bash.bashrc | cut -c8-14 | head -n 1)
   #stocke le résultat de la première ligne et des caractères 8 à 14 pour la recherche
   #"export maccent" du fichier bash.bashrc dans la variable debxport
-  if [ $debxport = maccent ]; then #si debxport = maccent
-    command > /dev/null 2>&1 #ne rien faire
-    else #variable (certaine on servis pour des tests...)
-       echo "#~~Variables~~#
+  command > /dev/null 2>&1 #ne rien faire
+  else #variable (certaine on servis pour des tests...)
+    echo "#~~Variables~~#
 export userdeladebian=$(users | grep -i "adminBot")" >> /etc/bash.bashrc
-      source /etc/bash.bashrc #actualiser le fichier bash.bashrc
-      echo '|'$userdeladebian'|'
-  fi
-     cd /etc
+    source /etc/bash.bashrc #actualiser le fichier bash.bashrc
+    echo '|'$userdeladebian'|'
+    cd /etc
   echo "tutoratBot" > hostname #changer le nom de la machine
   cd /etc/apt/ #mise a jour des sources
   echo "deb http://deb.debian.org/debian/ stable main contrib non-free
@@ -136,7 +134,7 @@ elif [ $chx_menu = 4 ]; then # test si le numéro 3 est sélectionner.
   su leo #on ce connecte en un utilisateur pour eviter le sudo du script
   pi  #mot de passe du user
   bundle install # et on peut installer l'api
-  exit # puis on ce deconnecte pour retrouver le sudo
+
   apt install libssl-dev libffi-dev libsqlite3-dev zlib1g-dev gcc g++ make
   wget https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tgz
   tar xzvf Python-3.6.4.tgz
