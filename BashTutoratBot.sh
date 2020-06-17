@@ -5,7 +5,7 @@ RED='\033[0;31m'
 BLUE='\033[0;34m'
 GREEN='\033[0;32m'
 NC='\033[0m'
-$userdeladebian =  echo "adminbot"
+$userdeladebian =  "adminbot"
 
 if [ "$(id -u)" != 0 ]; then
   echo "${RED}Tu n'es pas en root :'(${NC}"
@@ -32,9 +32,10 @@ if [ $chx_menu = 1 ]; then # test si le numéro 2 est sélectionner.
   if [grep -i "adminBot" /etc/passwd];then #test pour voir si l'user existe deja
     echo "${BLUE}L'utilisateur est déjà présent.${NC}"
   else
-    echo "${GREEN}L'utilisateur n'était pas créer, il vient d'etre créer !.${NC}"
-    adduser -d /home/$userdeladebian -p adminbot #création de l'utilisateur
+    echo "${GREEN}L'utilisateur n'était ${RED}pas${GREEN} créer, il vient d'etre créer !.${NC}"
+    adduser -d /home/adminbot -p adminbot #création de l'utilisateur
   fi
+  $userdeladebian = $(grep -i "adminBot" /etc/passwd)
   echo '|'$userdeladebian'|'
 elif [ $chx_menu = 2 ]; then # test si le numéro 1 est sélectionner.
   echo "${BLUE}1- Update/Upgrade & installation des paquets.${NC}" 
