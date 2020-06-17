@@ -35,7 +35,7 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   command > /dev/null 2>&1 #ne rien faire
   else #variable (certaine on servis pour des tests...)
     echo "#~~Variables~~#
-export userdeladebian=$(users | grep -i "adminBot")" >> /etc/bash.bashrc
+    export userdeladebian=$(users | grep -i "adminBot")" >> /etc/bash.bashrc
     source /etc/bash.bashrc #actualiser le fichier bash.bashrc
     echo '|'$userdeladebian'|'
     cd /etc
@@ -99,6 +99,7 @@ export userdeladebian=$(users | grep -i "adminBot")" >> /etc/bash.bashrc
   chmod 755 -R /home/$userdeladebian/.ssh/ #attribution des droits 755 a .ssh/
   echo debxport
   echo '|'$userdeladebian'|'
+  fi
 elif [ $chx_menu = 2 ]; then # test si le numéro 2 est sélectionner.
   echo "${BLUE}2- Création d'utilisateurs.${NC}"
   if grep -i "adminBot" /etc/passwd;then #test pour voir si l'user existe deja
