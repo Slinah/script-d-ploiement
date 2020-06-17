@@ -155,6 +155,5 @@ elif [ $chx_menu = 5 ]; then # test si le numéro 5 est sélectionner.
   echo "${RED}Tu nous quittes :c${NC}"
   reboot
   exit 1
-fi
 done
 
