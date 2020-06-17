@@ -137,7 +137,7 @@ elif [ $chx_menu = 4 ]; then # test si le numéro 3 est sélectionner.
   pi  #mot de passe du user
   bundle install # et on peut installer l'api
   exit # puis on ce deconnecte pour retrouver le sudo
-  sudo apt install libssl-dev libffi-dev libsqlite3-dev zlib1g-dev gcc g++ make
+  apt install libssl-dev libffi-dev libsqlite3-dev zlib1g-dev gcc g++ make
   wget https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tgz
   tar xzvf Python-3.6.4.tgz
   cd Python-3.6.4/
