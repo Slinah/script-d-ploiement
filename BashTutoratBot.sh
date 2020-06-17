@@ -17,8 +17,8 @@ ${GREEN}---Menu du Script---${NC}
 
 ${BLUE}1- Update/Upgrade & installation des paquets.${NC}
 ${BLUE}2- Création d'utilisateurs.${NC}
-${BLUE}3- Openssh, l'api ruby, et l'api discord.${NC}
-${BLUE}4- Configuration de la BDD.${NC}
+${BLUE}3- Configuration de la BDD.${NC}
+${BLUE}4- Openssh, l'api ruby, et l'api discord.${NC}
 ${BLUE}5- Quitter le script et reboot de la machine --->[].${NC}
 
 ${GREEN}--------------------${NC}
@@ -137,9 +137,21 @@ elif [ $chx_menu = 4 ]; then # test si le numéro 3 est sélectionner.
   pi  #mot de passe du user
   bundle install # et on peut installer l'api
   exit # puis on ce deconnecte pour retrouver le sudo
+  apt install libssl-dev libffi-dev libsqlite3-dev zlib1g-dev gcc g++ make
+  wget https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tgz
+  tar xzvf Python-3.6.4.tgz
+  cd Python-3.6.4/
+  ./configure
+  make
+  make install
+  python3 -m pip install -U discord.py[voice]
+  mkdir bot
+  cd bot
+  git clone https://github.com/Slinah/stage_refonte_bot.git
+  python3 bot.py thread.py dependencies.py
 elif [ $chx_menu = 5 ]; then # test si le numéro 5 est sélectionner.
   echo "${RED}Tu nous quittes :c${NC}"
-  #reboot
+  reboot
   exit 1
 fi
 done
