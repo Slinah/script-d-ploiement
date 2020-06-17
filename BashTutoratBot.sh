@@ -41,7 +41,7 @@ export userdeladebian=$(users | grep -i "adminBot")" >> /etc/bash.bashrc
       echo '|'$userdeladebian'|'
   fi
      cd /etc
-  echo "tutoratBot" > hostname #changer le nom de la machine
+  echo -e "tutoratBot" > hostname #changer le nom de la machine
   cd /etc/apt/ #mise a jour des sources
   echo "deb http://deb.debian.org/debian/ stable main contrib non-free
   deb-src http://deb.debian.org/debian/ stable main contrib non-free
