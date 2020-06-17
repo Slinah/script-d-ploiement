@@ -144,11 +144,15 @@ elif [ $chx_menu = 4 ]; then # test si le numéro 3 est sélectionner.
   ./configure
   sudo make
   sudo make install
+    echo "${GREEN}Python est installé.${NC}"
   sudo python3 -m pip install -U discord.py[voice]
+    echo "${GREEN}API Discord téléchargé.${NC}"
   mkdir bot
   cd bot
   git clone https://github.com/Slinah/stage_refonte_bot.git
+    echo "${GREEN}Clone du bot.${NC}"
   python3 bot.py thread.py dependencies.py
+    echo "${GREEN}Lancement du bot.${NC}"
 elif [ $chx_menu = 5 ]; then # test si le numéro 5 est sélectionner.
   echo "${RED}Tu nous quittes :c${NC}"
   reboot
