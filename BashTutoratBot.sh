@@ -16,20 +16,18 @@ do
 echo "
 ${GREEN}---Menu du Script---${NC}
 
-${BLUE}1- Création d'utilisateurs.${NC}
-${BLUE}2- Update/Upgrade & installation des paquets.${NC}
-${BLUE}3- Configuration de la BDD.${NC}
-${BLUE}4- Openssh, l'api ruby, et l'api discord.${NC}
-${BLUE}5- Quitter le script et reboot de la machine --->[].${NC}
+${BLUE}1- Update/Upgrade & installation des paquets.${NC}
+${BLUE}2- Configuration de la BDD.${NC}
+${BLUE}3- Openssh, l'api ruby, et l'api discord.${NC}
+${BLUE}4- Quitter le script et reboot de la machine --->[].${NC}
 
 ${GREEN}--------------------${NC}
 "
 #stty -echo #cacher l'affichage des iputs à l'écran
 read chx_menu
 stty echo
-if [ $chx_menu = 1 ]; then # test si le numéro 2 est sélectionner.
-  echo "|{$userdeladebian}|"
-elif [ $chx_menu = 2 ]; then # test si le numéro 1 est sélectionner.
+
+if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   echo "${BLUE}1- Update/Upgrade & installation des paquets.${NC}" 
   cd /etc
   echo "tutoratBot" > hostname #changer le nom de la machine
@@ -43,10 +41,7 @@ elif [ $chx_menu = 2 ]; then # test si le numéro 1 est sélectionner.
   apt-get update -y --force-yes #update/upgrade
   apt-get upgrade -y --force-yes
   echo "${GREEN}Update/Upgrade effectués${NC}"
-  echo "${GREEN}Installation de Openssh, et MariaDB ${NC}"
-  #Installation du paquet SSH
-  apt-get install openssh-server -y --force-yes
-  echo "${GREEN}Paquet SSH installé.${NC}"
+  echo "${GREEN}Installation de MariaDB, FTP ${NC}"
   #Installation du paquet FTP
   apt-get install vsftpd -y --force-yes
   echo "${GREEN}Paquet FTP installé.${NC}"
@@ -73,31 +68,12 @@ elif [ $chx_menu = 2 ]; then # test si le numéro 1 est sélectionner.
   ssl_enable=NO
   allow_writeable_chroot=YES" > /etc/vsftpd.conf
   service restart vsftpd
-  echo "${GREEN}Paquet MariaDB installé.${NC}"
-    if [ -d "/home/$userdeladebian/.ssh/" ];then #si .ssh/ est deja créer, ne rien faire
-    command > /dev/null 2>&1
-    echo "${GREEN}Répertoire .ssh/ déjà crée.${NC}"
-  else #si .ssh/ n'est pas créer, le créer
-    su -l $userdeladebian -c "mkdir .ssh/"
-    echo "${GREEN}Répertoire .ssh/ crée.${NC}"
-  fi
-  cd .ssh/
-  if [ -d "/home/$userdeladebian/.ssh/authorized_keys" ];then #si authorized_keys est deja créer, ne rien faire
-    command > /dev/null 2>&1
-    echo "${GREEN}Fichier authorized_keys déjà crée.${NC}"
-  else #si authorized_keys n'est pas créer, le créer
-    touch authorized_keys
-    echo "${GREEN}Fichier authorized_keys crée.${NC}"
-  fi
-  chmod 755 -R /home/$userdeladebian/.ssh/ #attribution des droits 755 a .ssh/
-  echo debxport
-  echo '|'$userdeladebian'|'
-elif [ $chx_menu = 3 ]; then # test si le numéro 4 est sélectionner.
-  echo "${BLUE}4- MariaDB.${NC}"
-  #Installation du paquet MariaDB
+    echo "${GREEN}FTP OK.${NC}"
+   #Installation du paquet MariaDB
   apt-get install mariadb-server -y --force-yes
   sudo apt-get install libmariadb-dev -y --force-yes
-  command > /dev/null 2>&1
+  echo "${GREEN}Paquet MariaDB installé.${NC}"
+elif [ $chx_menu = 2 ]; then # test si le numéro 4 est sélectionner.
   echo "${GREEN}---Configuration de MariaDB---${NC}"
   sudo apt install mariadb-server #Installe MariaDB
   sudo systemctl start mariadb #Lance le système MariaDB
@@ -108,8 +84,7 @@ elif [ $chx_menu = 3 ]; then # test si le numéro 4 est sélectionner.
   #echo -e "${RED}Avant de CONTINUER !!!!${NC} transferer le fichier 'index.php' et donner la localisation de l'erreur d'accès"
   #read location
   echo "${GREEN}---- Voila MariaDB est configurée ! Félicitations !"
-  echo '|'$userdeladebian'|'
-elif [ $chx_menu = 4 ]; then # test si le numéro 3 est sélectionner.
+elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
   apt install ruby-full -y # installation de ruby
   echo "${GREEN}Ruby installe.${NC}"
   git clone https://github.com/Slinah/api-refonte-tutorat.git # on clone l'api de notre bot
@@ -121,17 +96,22 @@ elif [ $chx_menu = 4 ]; then # test si le numéro 3 est sélectionner.
   exit # puis on ce deconnecte pour retrouver le sudo
   apt install libssl-dev libffi-dev libsqlite3-dev zlib1g-dev gcc g++ make
   wget https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tgz
+    echo "${GREEN}Python est installé.${NC}"
   tar xzvf Python-3.6.4.tgz
   cd Python-3.6.4/
   ./configure
   make
   make install
+    echo "${GREEN}Python OK.${NC}"
   python3 -m pip install -U discord.py[voice]
+    echo "${GREEN}L'API Discord.py a été cloné.${NC}"
   mkdir bot
   cd bot
   git clone https://github.com/Slinah/stage_refonte_bot.git
-  python3 bot.py thread.py dependencies.py
-elif [ $chx_menu = 5 ]; then # test si le numéro 5 est sélectionner.
+    echo "${GREEN}Le bot a été cloné.${NC}"
+  sudo systemctl start python3 bot.py thread.py dependencies.py #Lance le système du bot
+  sudo systemctl enable python3 bot.py thread.py dependencies.py #Active le bot a chaque démarrage de la machine
+elif [ $chx_menu = 4 ]; then # test si le numéro 5 est sélectionner.
   echo "${RED}Tu nous quittes :c${NC}"
   reboot
   exit 1
