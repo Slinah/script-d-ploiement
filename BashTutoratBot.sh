@@ -133,7 +133,10 @@ elif [ $chx_menu = 4 ]; then # test si le numéro 3 est sélectionner.
   git clone https://github.com/Slinah/api-refonte-tutorat.git # on clone l'api de notre bot
   echo "${GREEN}L'API a été clone.${NC}"
   gem install bundler
+  su leo 
+  pi
   bundle install
+  exit
 elif [ $chx_menu = 5 ]; then # test si le numéro 5 est sélectionner.
   echo "${RED}Tu nous quittes :c${NC}"
   #reboot
