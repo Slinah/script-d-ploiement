@@ -1,10 +1,10 @@
  #command to execute it on debian chmod +x .sh
  #!/bin/bash
 
-RED='\E033[0;31m'
-BLUE='\E033[0;34m'
-GREEN='\E033[0;32m'
-NC='\E033[0m'
+RED='\031[0;47m'
+BLUE='\033[0;34m'
+GREEN='\033[0;32m'
+NC='\033[0m'
 $userdeladebian = $(grep -i "leo" /etc/passwd)
 
 if [ "$(id -u)" != 0 ]; then
