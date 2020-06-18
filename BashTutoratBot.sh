@@ -1,10 +1,10 @@
  #command to execute it on debian chmod +x .sh
  #!/bin/bash
 
-RED='\033[0;31m'
-BLUE='\033[0;34m'
-GREEN='\033[0;32m'
-NC='\033[0m'
+RED='\E033[0;31m'
+BLUE='\E033[0;34m'
+GREEN='\E033[0;32m'
+NC='\E033[0m'
 $userdeladebian = $(grep -i "leo" /etc/passwd)
 
 if [ "$(id -u)" != 0 ]; then
@@ -41,33 +41,7 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   apt-get update -y #update/upgrade
   apt-get upgrade -y
   echo "${GREEN}Update/Upgrade effectués${NC}"
-  echo "${GREEN}Installation de MariaDB, FTP ${NC}"
-  #Installation du paquet FTP
-  apt-get install vsftpd -y2
-  echo "${GREEN}Paquet FTP installé.${NC}"
-  cd /etc
-  if [ -d "/etc/vsftpd.conf" ];then
-    rm /etc/vsftpd.conf
-  fi
-  touch /etc/vsftpd.conf #changer le fichier vsftpd
-  echo "listen=NO
-  listen_ipv6=YES
-  anonymous_enable=NO
-  local_enable=YES
-  write_enable=YES
-  local_umask=022
-  dirmessage_enable=YES
-  use_localtime=YES
-  xferlog_enable=YES
-  connect_from_port_20=YES
-  chroot_local_user=YES
-  secure_chroot_dir=/var/run/vsftpd/empty
-  pam_service_name=vsftpd
-  rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
-  rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
-  ssl_enable=NO
-  allow_writeable_chroot=YES" > /etc/vsftpd.conf
-  service vsftpd restart
+  echo "${GREEN}Installation de MariaDB${NC}"
     echo "${GREEN}FTP OK.${NC}"
    #Installation du paquet MariaDB
   apt-get install mariadb-server -y
