@@ -5,7 +5,10 @@ RED='\031[0;47m'
 BLUE='\033[0;34m'
 GREEN='\033[0;32m'
 NC='\033[0m'
-$userdeladebian = $(grep -i "leo" /etc/passwd)
+if ["$(grep -i "leo" /etc/passwd)"];then
+  $userdeladebian = "leo"
+  echo $userdeladebian
+fi
 
 if [ "$(id -u)" != 0 ]; then
   echo "${RED}Tu n'es pas en root :'(${NC}"
