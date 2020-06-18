@@ -5,7 +5,7 @@ RED='\031[0;47m'
 BLUE='\033[0;34m'
 GREEN='\033[0;32m'
 NC='\033[0m'
-if ["$(grep -x "leo" /etc/passwd)"];then
+if ["$(grep "^[^:]*:[^:]*:$1:" /etc/passwd)"];then
   $userdeladebian = "leo"
   echo $userdeladebian
 fi
