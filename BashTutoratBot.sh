@@ -18,7 +18,7 @@ ${GREEN}---Menu du Script---${NC}
 
 ${BLUE}1- Update/Upgrade & installation des paquets.${NC}
 ${BLUE}2- Configuration de la BDD.${NC}
-${BLUE}3- Openssh, l'api ruby, et l'api discord.${NC}
+${BLUE}3- L'api ruby, et l'api discord.${NC}
 ${BLUE}4- Quitter le script et reboot de la machine --->[].${NC}
 
 ${GREEN}--------------------${NC}
@@ -38,12 +38,12 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   deb-src http://deb.debian.org/debian/ stable-updates main contrib non-free" > sources.list
   echo "${GREEN}Les sources ont été modifiées (t'es maintenant sûr de pouvoir installer).${NC}"
   #Update upgrade des sources
-  apt-get update -y --force-yes #update/upgrade
-  apt-get upgrade -y --force-yes
+  apt-get update -y #update/upgrade
+  apt-get upgrade -y
   echo "${GREEN}Update/Upgrade effectués${NC}"
   echo "${GREEN}Installation de MariaDB, FTP ${NC}"
   #Installation du paquet FTP
-  apt-get install vsftpd -y --force-yes
+  apt-get install vsftpd -y2
   echo "${GREEN}Paquet FTP installé.${NC}"
   cd /etc
   if [ -d "/etc/vsftpd.conf" ];then
@@ -75,7 +75,16 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   echo "${GREEN}Paquet MariaDB installé.${NC}"
 elif [ $chx_menu = 2 ]; then # test si le numéro 4 est sélectionner.
   echo "${GREEN}---Configuration de MariaDB---${NC}"
-  sudo apt install mariadb-server #Installe MariaDB
+  sudo apt install mariadb-server -y #Installe MariaDB
+  mysql_secure_installation
+  \n
+  root
+  root
+  y
+  n
+  y
+  y
+  service mariadb status
   sudo systemctl start mariadb #Lance le système MariaDB
   sudo systemctl enable mariadb #Active MariaDB a chaque démarrage de la machine
   mysql -u root "create user adminBot;" #Creation de l'user 'adminBot'
