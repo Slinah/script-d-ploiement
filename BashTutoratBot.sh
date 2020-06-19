@@ -55,9 +55,9 @@ elif [ $chx_menu = 2 ]; then # test si le numéro 4 est sélectionner.
   systemctl start mariadb #Lance le système MariaDB
   systemctl enable mariadb #Active MariaDB a chaque démarrage de la machine
   mysql -u root #On ouvre l'interface de Mariadb
-  create user adminBot; #Creation de l'user 'adminBot'
-  create database tutoratBot; #Création de la BDD tutoratBot
-  tutoratBot < tutoratrefonte.sql; #Import du script SQl dans la base de données du tutorat
+  "create user adminBot;" #Creation de l'user 'adminBot'
+  "create database tutoratBot;" #Création de la BDD tutoratBot
+  "tutoratBot < tutoratrefonte.sql;" #Import du script SQl dans la base de données du tutorat
   exit
   echo "${GREEN}---- Voila MariaDB est configurée ! Félicitations !"
 elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
