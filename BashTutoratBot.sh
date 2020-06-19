@@ -51,11 +51,11 @@ elif [ $chx_menu = 2 ]; then # test si le numéro 4 est sélectionner.
   echo "${GREEN}---Configuration de MariaDB---${NC}"
   sudo apt install mariadb-server -y #Installe MariaDB
   mysql_secure_installation
-  sudo systemctl start mariadb #Lance le système MariaDB
-  sudo systemctl enable mariadb #Active MariaDB a chaque démarrage de la machine
+  systemctl start mariadb #Lance le système MariaDB
+  systemctl enable mariadb #Active MariaDB a chaque démarrage de la machine
   mysql -u root "create user adminBot;" #Creation de l'user 'adminBot'
   mysql -u root "create database tutoratBot;" #Création de la BDD tutoratBot
-  mysql -u root -p tutoratBot < /home/$userdeladebian/script-delpoiement/tutorat.sql #Import du script SQl dans la base de données du tutorat
+  mysqldump -u root -p tutoratBot < /home/leo/script-delpoiement/tutorat.sql #Import du script SQl dans la base de données du tutorat
   #echo -e "${RED}Avant de CONTINUER !!!!${NC} transferer le fichier 'index.php' et donner la localisation de l'erreur d'accès"
   #read location
   echo "${GREEN}---- Voila MariaDB est configurée ! Félicitations !"
@@ -71,19 +71,19 @@ elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
   exit # puis on ce deconnecte pour retrouver le sudo
   apt install libssl-dev libffi-dev libsqlite3-dev zlib1g-dev gcc g++ make
   wget https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tgz
-    echo "${GREEN}Python est installé.${NC}"
+  echo "${GREEN}Python est installé.${NC}"
   tar xzvf Python-3.6.4.tgz
   cd Python-3.6.4/
   ./configure
   make
   make install
-    echo "${GREEN}Python OK.${NC}"
+  echo "${GREEN}Python OK.${NC}"
   python3 -m pip install -U discord.py[voice]
-    echo "${GREEN}L'API Discord.py a été cloné.${NC}"
+  echo "${GREEN}L'API Discord.py a été cloné.${NC}"
   mkdir bot
   cd bot
   git clone https://github.com/Slinah/stage_refonte_bot.git
-    echo "${GREEN}Le bot a été cloné.${NC}"
+  echo "${GREEN}Le bot a été cloné.${NC}"
   sudo systemctl start python3 bot.py thread.py dependencies.py #Lance le système du bot
   sudo systemctl enable python3 bot.py thread.py dependencies.py #Active le bot a chaque démarrage de la machine
 elif [ $chx_menu = 4 ]; then # test si le numéro 5 est sélectionner.
