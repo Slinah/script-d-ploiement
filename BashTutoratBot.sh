@@ -5,10 +5,7 @@ RED='\031[0;47m'
 BLUE='\033[0;34m'
 GREEN='\033[0;32m'
 NC='\033[0m'
-if ["$(grep "^[^:]*:[^:]*:$1:" /etc/passwd)"];then
-  $userdeladebian = "leo"
-  echo $userdeladebian
-fi
+userdeladebian = "leo"
 
 if [ "$(id -u)" != 0 ]; then
   echo "${RED}Tu n'es pas en root :'(${NC}"
@@ -45,7 +42,6 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   apt-get upgrade -y
   echo "${GREEN}Update/Upgrade effectués${NC}"
   echo "${GREEN}Installation de MariaDB${NC}"
-    echo "${GREEN}FTP OK.${NC}"
    #Installation du paquet MariaDB
   apt-get install mariadb-server -y
   sudo apt-get install libmariadb-dev -y
@@ -54,19 +50,11 @@ elif [ $chx_menu = 2 ]; then # test si le numéro 4 est sélectionner.
   echo "${GREEN}---Configuration de MariaDB---${NC}"
   sudo apt install mariadb-server -y #Installe MariaDB
   mysql_secure_installation
-  \n
-  root
-  root
-  y
-  n
-  y
-  y
-  service mariadb status
   sudo systemctl start mariadb #Lance le système MariaDB
   sudo systemctl enable mariadb #Active MariaDB a chaque démarrage de la machine
   mysql -u root "create user adminBot;" #Creation de l'user 'adminBot'
   mysql -u root "create database tutoratBot;" #Création de la BDD tutoratBot
-  mysql -u root -p tutoratBot < /home/$userdeladebian/tutorat.sql #Import du script SQl dans la base de données du tutorat
+  mysql -u root -p tutoratBot < /home/$userdeladebian/script-delpoiement/tutorat.sql #Import du script SQl dans la base de données du tutorat
   #echo -e "${RED}Avant de CONTINUER !!!!${NC} transferer le fichier 'index.php' et donner la localisation de l'erreur d'accès"
   #read location
   echo "${GREEN}---- Voila MariaDB est configurée ! Félicitations !"
