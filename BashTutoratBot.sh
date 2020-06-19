@@ -51,6 +51,7 @@ elif [ $chx_menu = 2 ]; then # test si le numéro 4 est sélectionner.
   echo "${GREEN}---Configuration de MariaDB---${NC}"
   sudo apt install mariadb-server -y #Installe MariaDB
   mysql_secure_installation
+  exit
   systemctl start mariadb #Lance le système MariaDB
   systemctl enable mariadb #Active MariaDB a chaque démarrage de la machine
   mysql -u root #On ouvre l'interface de Mariadb
