@@ -5,7 +5,7 @@ RED='\031[0;47m'
 BLUE='\033[0;34m'
 GREEN='\033[0;32m'
 NC='\033[0m'
-userdeladebian = "leo"
+local userdeladebian = "leo"
 
 if [ "$(id -u)" != 0 ]; then
   echo "${RED}Tu n'es pas en root :'(${NC}"
