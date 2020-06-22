@@ -83,10 +83,10 @@ elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
   cd bot
   git clone https://github.com/Slinah/stage_refonte_bot.git
   echo "${GREEN}Le bot a été cloné.${NC}"
-  sudo systemctl start python3 bot.py thread.py dependencies.py #Lance le système du bot
-  sudo systemctl enable python3 bot.py thread.py dependencies.py #Active le bot a chaque démarrage de la machine
-  sudo systemctl start  #Lance le système de l'api ruby
-  sudo systemctl enable  #Active l'api ruby a chaque démarrage de la machine'
+  sudo systemctl start python3 bot.py #Lance le système du bot
+  sudo systemctl enable python3 bot.py #Active le bot a chaque démarrage de la machine
+  #sudo systemctl start  #Lance le système de l'api ruby
+  #sudo systemctl enable  #Active l'api ruby a chaque démarrage de la machine'
 elif [ $chx_menu = 4 ]; then # test si le numéro 5 est sélectionner.
   echo "${RED}Tu nous quittes :c${NC}"
   reboot
