@@ -51,14 +51,12 @@ elif [ $chx_menu = 2 ]; then # test si le numéro 4 est sélectionner.
   echo "${GREEN}---Configuration de MariaDB---${NC}"
   sudo apt install mariadb-server -y #Installe MariaDB
   mysql_secure_installation
-  exit
   systemctl start mariadb #Lance le système MariaDB
   systemctl enable mariadb #Active MariaDB a chaque démarrage de la machine
-  mysql -u root #On ouvre l'interface de Mariadb
-  "create user adminBot;" #Creation de l'user 'adminBot'
-  "create database tutoratBot;" #Création de la BDD tutoratBot
-  "tutoratBot < tutoratrefonte.sql;" #Import du script SQl dans la base de données du tutorat
-  exit
+  mysql -u root -e "create user adminbot;" #Creation de l'user 'Adminbot'
+  mysql -u root -e "create database tutorat;" #Création de la BDD tutorat
+  mysql -u root -p tutorat < tutoratrefonte.sql #Import du script SQl dans la base de données tutoratrefonte.sql
+  mysql -u root -e "GRANT ALL privileges ON tutorat.* TO adminbot;" #Ajouts des privilèges de adminbot
   echo "${GREEN}---- Voila MariaDB est configurée ! Félicitations !"
 elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
   apt install ruby-full -y # installation de ruby
@@ -87,6 +85,8 @@ elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
   echo "${GREEN}Le bot a été cloné.${NC}"
   sudo systemctl start python3 bot.py thread.py dependencies.py #Lance le système du bot
   sudo systemctl enable python3 bot.py thread.py dependencies.py #Active le bot a chaque démarrage de la machine
+  sudo systemctl start  #Lance le système de l'api ruby
+  sudo systemctl enable  #Active l'api ruby a chaque démarrage de la machine'
 elif [ $chx_menu = 4 ]; then # test si le numéro 5 est sélectionner.
   echo "${RED}Tu nous quittes :c${NC}"
   reboot
