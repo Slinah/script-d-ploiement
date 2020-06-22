@@ -85,6 +85,7 @@ elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
   echo "${GREEN}Le bot a été cloné.${NC}"
   sudo systemctl start python3 bot.py #Lance le système du bot
   sudo systemctl enable python3 bot.py #Active le bot a chaque démarrage de la machine
+  cd
   #sudo systemctl start  #Lance le système de l'api ruby
   #sudo systemctl enable  #Active l'api ruby a chaque démarrage de la machine'
 elif [ $chx_menu = 4 ]; then # test si le numéro 5 est sélectionner.
