@@ -1,5 +1,5 @@
+  #!/bin/bash
  #command to execute it on debian chmod +x .sh
- #!/bin/bash
 
 RED='\031[0;47m'
 BLUE='\033[0;34m'
@@ -62,7 +62,9 @@ elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
   apt install ruby-full -y # installation de ruby
   echo "${GREEN}Ruby installe.${NC}"
   git clone https://github.com/Slinah/api-refonte-tutorat.git # on clone l'api de notre bot
-  echo "${GREEN}L'API a été clone.${NC}"
+  echo "${GREEN}L'API ruby a été clone.${NC}"
+
+  su - leo 
   gem install bundler
   su leo #on ce connecte en un utilisateur pour eviter le sudo du script
   pi  #mot de passe du user
