@@ -63,13 +63,8 @@ elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
   echo "${GREEN}Ruby installe.${NC}"
   git clone https://github.com/Slinah/api-refonte-tutorat.git # on clone l'api de notre bot
   echo "${GREEN}L'API ruby a été clone.${NC}"
-
-  su - leo 
   gem install bundler
-  su leo #on ce connecte en un utilisateur pour eviter le sudo du script
-  pi  #mot de passe du user
-  bundle install # et on peut installer l'api
-  exit # puis on ce deconnecte pour retrouver le sudo
+  su -l leo -c " bundle install"
   apt install libssl-dev libffi-dev libsqlite3-dev zlib1g-dev gcc g++ make
   wget https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tgz
   echo "${GREEN}Python est installé.${NC}"
@@ -91,7 +86,7 @@ elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
   #sudo systemctl start  #Lance le système de l'api ruby
   #sudo systemctl enable  #Active l'api ruby a chaque démarrage de la machine'
 elif [ $chx_menu = 4 ]; then # test si le numéro 5 est sélectionner.
-  echo "${RED}Tu nous quittes :c${NC}"
+  echo "${RED}Tu nous quittes :/${NC}"
   reboot
   exit 1
 fi
