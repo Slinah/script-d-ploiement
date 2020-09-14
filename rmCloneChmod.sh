@@ -11,5 +11,6 @@ fi
 rm -r script-deploiement
 git clone https://github.com/Slinah/script-deploiement.git
 cd /home/leo/script-deploiement
+rm -rf /home/leo/script-depoliement/Cédric
 chmod +x /home/leo/script-deploiement/BashTutoratBot.sh
 exit 0
