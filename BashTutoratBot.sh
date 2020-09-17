@@ -47,7 +47,7 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   apt-get install mariadb-server -y
   sudo apt-get install libmariadb-dev -y
   echo "${GREEN}Paquet MariaDB installé.${NC}"
-elif [ $chx_menu = 2 ]; then # test si le numéro 4 est sélectionner.
+elif [ $chx_menu = 2 ]; then # test si le numéro 1 est sélectionner.
   echo "${GREEN}---Configuration de MariaDB---${NC}"
   sudo apt install mariadb-server -y #Installe MariaDB
   mysql_secure_installation
@@ -66,15 +66,17 @@ elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
   gem install bundler
   su -l leo -c " bundle install"
   apt install libssl-dev libffi-dev libsqlite3-dev zlib1g-dev gcc g++ make
-  wget https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tgz
+  wget https://www.python.org/ftp/python/3.8.5/Python-3.8.5.tgz #modifier et mise a jour de python 3.8
   echo "${GREEN}Python est installé.${NC}"
-  tar xzvf Python-3.6.4.tgz
-  cd Python-3.6.4/
+  tar xzvf Python-3.8.5.tgz
+  cd Python-3.8.5/
   ./configure
   make
   make install
   echo "${GREEN}Python OK.${NC}"
-  python3 -m pip install -U discord.py[voice]
+  wget https://bootstrap.pypa.io/get-pip.py #install pip
+  apt upgrade get-pip.py #upgrade pip a test
+  python3 -m pip install -U discord.py[voice] #s'intall parfaitement
   echo "${GREEN}L'API Discord.py a été cloné.${NC}"
   mkdir bot
   cd bot
