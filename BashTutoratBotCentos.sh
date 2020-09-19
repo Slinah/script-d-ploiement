@@ -38,13 +38,10 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   echo "${GREEN}Paquet Wget installé${NC}"
   echo "${GREEN}Installation de MariaDB${NC}"
   #Installation du paquet MariaDB
-  wget https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
-  chmod +x mariadb_repo_setup
-  sudo ./mariadb_repo_setup
+  yum install mariadb-server 
   echo "${GREEN}Paquet MariaDB installé.${NC}"
 elif [ $chx_menu = 2 ]; then # test si le numéro 1 est sélectionner.
   echo "${GREEN}---Configuration de MariaDB---${NC}"
-  mysql_install_db
   systemctl start mariadb.service #Lance le système MariaDB
   systemctl enable mariadb.service #Active MariaDB a chaque démarrage de la machine
   firewall-cmd --add-port=3306/tcp 
