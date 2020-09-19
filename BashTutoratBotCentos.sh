@@ -30,36 +30,32 @@ stty echo
 
 if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   echo "${BLUE}1- Update/Upgrade & installation des paquets.${NC}" 
-  cd /etc
-  echo "tutoratBot" > hostname #changer le nom de la machine
-  cd /etc/apt/ #mise a jour des sources
-  echo "deb http://deb.debian.org/debian/ stable main contrib non-free
-  deb-src http://deb.debian.org/debian/ stable main contrib non-free
-  deb http://deb.debian.org/debian/ stable-updates main contrib non-free
-  deb-src http://deb.debian.org/debian/ stable-updates main contrib non-free" > sources.list
-  echo "${GREEN}Les sources ont été modifiées (t'es maintenant sûr de pouvoir installer).${NC}"
-  #Update upgrade des sources
-  apt-get update -y #update/upgrade
-  apt-get upgrade -y
+  yum -y update
+  yum -y upgrade
+  #Installation du paquet MariaDB
   echo "${GREEN}Update/Upgrade effectués${NC}"
+  yum install wget -y 
+  echo "${GREEN}Paquet Wget installé${NC}"
   echo "${GREEN}Installation de MariaDB${NC}"
-   #Installation du paquet MariaDB
-  apt-get install mariadb-server -y
-  sudo apt-get install libmariadb-dev -y
+  #Installation du paquet MariaDB
+  wget https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
+  chmod +x mariadb_repo_setup
+  sudo ./mariadb_repo_setup
   echo "${GREEN}Paquet MariaDB installé.${NC}"
 elif [ $chx_menu = 2 ]; then # test si le numéro 1 est sélectionner.
   echo "${GREEN}---Configuration de MariaDB---${NC}"
-  sudo apt install mariadb-server -y #Installe MariaDB
-  mysql_secure_installation
-  systemctl start mariadb #Lance le système MariaDB
-  systemctl enable mariadb #Active MariaDB a chaque démarrage de la machine
+  mysql_install_db
+  systemctl start mariadb.service #Lance le système MariaDB
+  systemctl enable mariadb.service #Active MariaDB a chaque démarrage de la machine
+  firewall-cmd --add-port=3306/tcp 
+  firewall-cmd --permanent --add-port=3306/tcp 
   mysql -u root -e "create user adminbot;" #Creation de l'user 'Adminbot'
   mysql -u root -e "create database tutorat;" #Création de la BDD tutorat
   mysql -u root -p tutorat < tutoratrefonte.sql #Import du script SQl dans la base de données tutoratrefonte.sql
   mysql -u root -e "GRANT ALL privileges ON tutorat.* TO adminbot;" #Ajouts des privilèges de adminbot
   echo "${GREEN}---- Voila MariaDB est configurée ! Félicitations !"
 elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
-  apt install ruby-full -y # installation de ruby
+  yum install ruby-full -y # installation de ruby
   echo "${GREEN}Ruby installe.${NC}"
   git clone https://github.com/Slinah/api-refonte-tutorat.git # on clone l'api de notre bot
   echo "${GREEN}L'API ruby a été clone.${NC}"
@@ -75,7 +71,7 @@ elif [ $chx_menu = 3 ]; then # test si le numéro 3 est sélectionner.
   make install
   echo "${GREEN}Python OK.${NC}"
   wget https://bootstrap.pypa.io/get-pip.py #install pip
-  apt upgrade get-pip.py #upgrade pip a test
+  yum upgrade get-pip.py #upgrade pip a test
   python3 -m pip install -U discord.py[voice] #s'intall parfaitement
   echo "${GREEN}L'API Discord.py a été cloné.${NC}"
   mkdir bot
