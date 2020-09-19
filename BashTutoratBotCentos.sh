@@ -39,14 +39,15 @@ if [ $chx_menu = 1 ]; then # test si le numéro 1 est sélectionner.
   echo -e "${GREEN}Paquet Wget installé${NC}"
   echo -e "${GREEN}Installation de MariaDB${NC}"
   #Installation du paquet MariaDB
-  yum install mariadb-server 
+  yum install mariadb-server -y
   echo -e "${GREEN}Paquet MariaDB installé.${NC}"
 elif [ $chx_menu = 2 ]; then # test si le numéro 1 est sélectionner.
   echo -e "${GREEN}---Configuration de MariaDB---${NC}"
   systemctl start mariadb.service #Lance le système MariaDB
   systemctl enable mariadb.service #Active MariaDB a chaque démarrage de la machine
-  firewall-cmd --add-port=3306/tcp 
-  firewall-cmd --permanent --add-port=3306/tcp 
+  #firewall-cmd --add-port=3306/tcp 
+  #firewall-cmd --permanent --add-port=3306/tcp 
+  sudo mysql_secure_installation
   mysql -u root -e "create user adminbot;" #Creation de l'user 'Adminbot'
   mysql -u root -e "create database tutorat;" #Création de la BDD tutorat
   mysql -u root -p tutorat < tutoratrefonte.sql #Import du script SQl dans la base de données tutoratrefonte.sql
